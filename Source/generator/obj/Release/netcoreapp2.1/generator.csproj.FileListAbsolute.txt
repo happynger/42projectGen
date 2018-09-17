@@ -1,0 +1,11 @@
+/nfs/2018/o/otahirov/Programs/project_gen/generator/bin/Release/netcoreapp2.1/generator.deps.json
+/nfs/2018/o/otahirov/Programs/project_gen/generator/bin/Release/netcoreapp2.1/generator.runtimeconfig.json
+/nfs/2018/o/otahirov/Programs/project_gen/generator/bin/Release/netcoreapp2.1/generator.runtimeconfig.dev.json
+/nfs/2018/o/otahirov/Programs/project_gen/generator/bin/Release/netcoreapp2.1/generator.dll
+/nfs/2018/o/otahirov/Programs/project_gen/generator/bin/Release/netcoreapp2.1/generator.pdb
+/nfs/2018/o/otahirov/Programs/project_gen/generator/obj/Release/netcoreapp2.1/generator.csprojAssemblyReference.cache
+/nfs/2018/o/otahirov/Programs/project_gen/generator/obj/Release/netcoreapp2.1/generator.csproj.CoreCompileInputs.cache
+/nfs/2018/o/otahirov/Programs/project_gen/generator/obj/Release/netcoreapp2.1/generator.AssemblyInfoInputs.cache
+/nfs/2018/o/otahirov/Programs/project_gen/generator/obj/Release/netcoreapp2.1/generator.AssemblyInfo.cs
+/nfs/2018/o/otahirov/Programs/project_gen/generator/obj/Release/netcoreapp2.1/generator.dll
+/nfs/2018/o/otahirov/Programs/project_gen/generator/obj/Release/netcoreapp2.1/generator.pdb
