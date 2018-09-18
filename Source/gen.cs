@@ -72,7 +72,10 @@ namespace generator
 			if (!Directory.Exists(dir))
 				Create_Dir(dir);
 			Create_aut(dir, input);
-			Move_assets("./assets/", dir);
+			if (!Directory.Exists(@"./assets/"))
+				Directory.CreateDirectory(@"./assets/");
+			else
+				Move_assets(@"./assets/", dir);
 			Console.WriteLine("The project was generated");
 		}
 
