@@ -81,7 +81,8 @@ namespace generator
 		private static void Generate(string dir, string input, string assets_dir) /* Main Heart of the program. Generates everything */
 		{
 			if (!Directory.Exists(dir))
-				Create_Dir(dir);
+				Directory.CreateDirectory(dir);
+			Create_Dir(dir);
 			Create_aut(dir, input);
 			if (!Directory.Exists(assets_dir))
 				Directory.CreateDirectory(assets_dir);
