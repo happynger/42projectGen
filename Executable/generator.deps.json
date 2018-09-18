@@ -1,12 +1,12 @@
 {
   "runtimeTarget": {
-    "name": ".NETCoreApp,Version=v2.1/osx-x64",
+    "name": ".NETCoreApp,Version=v2.1/osx.10.13-x64",
     "signature": "00345032468d56333d56a717fe70d720cad03ae5"
   },
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v2.1": {},
-    ".NETCoreApp,Version=v2.1/osx-x64": {
+    ".NETCoreApp,Version=v2.1/osx.10.13-x64": {
       "generator/1.0.0": {
         "dependencies": {
           "Microsoft.NETCore.App": "2.1.4",
