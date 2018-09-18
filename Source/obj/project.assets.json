@@ -1390,11 +1390,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/nfs/2018/o/otahirov/Programs/project_gen/generator/generator.csproj",
+      "projectUniqueName": "/nfs/2018/o/otahirov/Programs/42projectGen/Source/generator.csproj",
       "projectName": "generator",
-      "projectPath": "/nfs/2018/o/otahirov/Programs/project_gen/generator/generator.csproj",
+      "projectPath": "/nfs/2018/o/otahirov/Programs/42projectGen/Source/generator.csproj",
       "packagesPath": "/nfs/2018/o/otahirov/.nuget/packages/",
-      "outputPath": "/nfs/2018/o/otahirov/Programs/project_gen/generator/obj/",
+      "outputPath": "/nfs/2018/o/otahirov/Programs/42projectGen/Source/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/nfs/2018/o/otahirov/.brew/opt/dotnet/sdk/NuGetFallbackFolder"
