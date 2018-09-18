@@ -32,6 +32,7 @@ namespace generator
 					Generate(dir, input, config.assets);
 				else if (key == 'd' || key == 'D')
 				{
+					//Console.Write("Are you sure you want to ");
 					DirectoryInfo dirInfo = new DirectoryInfo(dir);
 					dirInfo.Delete(true);
 				}
