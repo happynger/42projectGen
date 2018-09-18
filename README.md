@@ -61,7 +61,7 @@ For instructions about brew slack marvin '!brew'
 Here is the command i used for the dotnet_install
 
 ```sh
-    sh dotnet-install.sh --channel Current --install-dir ~/.brew/opt/
+	sh dotnet-install.sh --channel Current --install-dir ~/.brew/opt/
 	cd ~/.brew/bin
 	ln -s ~/.brew/opt/dotnet/dotnet dotnet
 ```
