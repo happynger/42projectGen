@@ -1,4 +1,5 @@
-Source/generator/assets/libft.a
-Source/generator/assets/libft.h
-Executable/assets/*
-Source/bin/*
+Executable/assets/
+Source/assets/
+Source/bin/
+Source/obj/
+Makefile

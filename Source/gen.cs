@@ -12,18 +12,24 @@ namespace generator
 			string input;
 			string dir;
 			char key;
-			Item config = LoadJson();
+			if (!File.Exists(@"./config.json"))
+			{
+				GenJson();
+				Console.WriteLine("The json file was generated you may now change its value");
+				return;
+			}
+			Item config = LoadJson(); /* Loads Json file "config.json" */
 
 			Console.Write("Input the name of the project - ");
 			input = Console.ReadLine();
-			dir = String.Concat("../", input, "/");
+			dir = Path.Combine(config.output_path, input + "/"); /* Sets the dir to the output path of json */
 
-			if (config.delete)
+			if (config.delete) /* Checks the config file for the delete option */
 			{
 				Console.Write("Would you like to Generate or Delete project? (g/d) - ");
 				key = (char)Console.Read();
 				if (key == 'g' || key == 'G')
-					Generate(dir, input);
+					Generate(dir, input, config.assets);
 				else if (key == 'd' || key == 'D')
 				{
 					DirectoryInfo dirInfo = new DirectoryInfo(dir);
@@ -33,13 +39,11 @@ namespace generator
 					Console.WriteLine("This is not an option!");
 			}
 			else
-				Generate(dir, input);
+				Generate(dir, input, config.assets);
         }
 
-		private static Item LoadJson()
+		private static Item LoadJson() /* Loads Json file into an Item object */
 		{
-			if (!File.Exists(@"./config.json"))
-				GenJson();
 			using (StreamReader r = new StreamReader(@"config.json"))
 			{
 				string json = r.ReadToEnd();
@@ -48,44 +52,45 @@ namespace generator
 			}
 		}
 
-		private class Item
+		private class Item /* Object I use for the Json file */
 		{
-			public bool delete = true;
+			public bool delete = true; /* Setting to remove the delete functionality */
+			public string assets = "./assets/"; /* Setting to set your own assets folder path */
+			public string output_path = "../../"; /* Setting for the output path */
 		}
 
-		private static void GenJson()
+		private static void GenJson() /* Generates JSON file based on the class ITEM */
 		{
-			Item items = new Item
-			{
-				delete = true
-			};
+			Item items = new Item{};
 
 			using (StreamWriter sw = File.CreateText(@"./config.json"))
 			{
 				JsonSerializer serializer = new JsonSerializer();
+				serializer.Formatting = Formatting.Indented;
 				serializer.Serialize(sw, items);
 			}
 		}
 
-		private static void Generate(string dir, string input)
+		private static void Generate(string dir, string input, string assets_dir) /* Main Heart of the program. Generates everything */
 		{
 			if (!Directory.Exists(dir))
 				Create_Dir(dir);
 			Create_aut(dir, input);
-			if (!Directory.Exists(@"./assets/"))
-				Directory.CreateDirectory(@"./assets/");
+			if (!Directory.Exists(assets_dir))
+				Directory.CreateDirectory(assets_dir);
 			else
-				Move_assets(@"./assets/", dir);
+				Move_assets(assets_dir, dir);
 			Console.WriteLine("The project was generated");
 		}
 
-		private static void Move_assets(string dir, string path)
+		private static void Move_assets(string dir, string path) /* Copies and moves all the files in the ./assets to their appropriate folders. @path is the end path, @dir is directory to internal assets */
 		{
 			string src;
 			string end;
 			string endDir;
-			DirectoryInfo dirInfo = new DirectoryInfo(dir);
-			FileInfo[] fileNames = dirInfo.GetFiles("*.*");
+
+			DirectoryInfo dirInfo = new DirectoryInfo(dir); /* Opens the @dir (assets) */
+			FileInfo[] fileNames = dirInfo.GetFiles("*.*"); /* Reads all the files in the @dir */
 			foreach (FileInfo fi in fileNames)
 			{
 				if (fi.Name.Contains(".c"))
@@ -100,14 +105,14 @@ namespace generator
 			}
 		}
 
-		private static void Create_aut(string dir, string input)
+		private static void Create_aut(string dir, string input) /* Creates the Author file */
 		{
 			File.WriteAllText(dir + "author", Environment.GetEnvironmentVariable("USER") + "\n");
 			File.Create(dir + "src/" + input + ".c");
 			File.Create(dir + "headers/" + input + ".h");
 		}
 
-		private static void Create_Dir(string dir)
+		private static void Create_Dir(string dir) /* Creates all of the subDirectories */
 		{
 			Directory.CreateDirectory(dir + "assets");
 			Directory.CreateDirectory(dir + "headers");
