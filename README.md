@@ -41,10 +41,10 @@ Also I do not have 50 years of experience in C# so if you find something that co
 
 If you want to run executable just go into the folder /Executable and run the ./generator
 
-The first time you run it it will generate a _config.json_ file that you can change to your hearts content.
+The first time you run it it will generate a `config.json` file that you can change to your hearts content.
 
 **The program also has an option to delete the already generated project _but it will delete everything in the folder_**
-If you want to disable this feature you can do so in 'config.json' file by setting the 'delete:true' to 'delete:false'
+If you want to disable this feature you can do so in `config.json` file by setting the `delete:true` to `delete:false`
 
 # Source
 
@@ -52,7 +52,7 @@ If you would like to try fixing or even working the source file is there. Msg me
 
 **If you are planing on working on any of the lab's machines you will need to install _brew_**
 
-For instructions about brew slack marvin '!brew'
+For instructions about brew slack marvin `!brew`
 
 [Openssl](http://brewformulas.org/Openssl)
 
