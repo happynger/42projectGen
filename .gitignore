@@ -1,4 +1,4 @@
 Source/generator/assets/libft.a
 Source/generator/assets/libft.h
-Executable/assets/libft.a
-Executable/assets/libft.h
+Executable/assets/*
+Source/bin/*
