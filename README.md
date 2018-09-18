@@ -54,6 +54,6 @@ If you would like to try fixing or even working the source file is there. Msg me
 
 For instructions about brew slack marvin '!brew'
 
-[Openssl]http://brewformulas.org/Openssl
+![Openssl]http://brewformulas.org/Openssl
 
-[dotnet_install_script]https://dot.net/v1/dotnet-install.sh
+![dotnet_install_script]https://dot.net/v1/dotnet-install.sh
