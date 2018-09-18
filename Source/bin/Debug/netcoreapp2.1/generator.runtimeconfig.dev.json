@@ -1,9 +1,0 @@
-{
-  "runtimeOptions": {
-    "additionalProbingPaths": [
-      "/nfs/2018/o/otahirov/.dotnet/store/|arch|/|tfm|",
-      "/nfs/2018/o/otahirov/.nuget/packages",
-      "/nfs/2018/o/otahirov/.brew/opt/dotnet/sdk/NuGetFallbackFolder"
-    ]
-  }
-}
