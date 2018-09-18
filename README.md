@@ -40,3 +40,9 @@ Don't even mention it. I am not handling half of the errors I should currently. 
 It ain't pretty to look at yet... keyword **_yet_**
 
 Also I do not have 50 years of experience in C# so if you find something that could be done better I am down to change it!
+
+# How to use
+
+If you want to run executable just go into the folder /Executable and run the ./generator
+
+The first time you run it it will generate a _config.json_ file that you can change to your hearts content.
