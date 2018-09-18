@@ -45,3 +45,15 @@ The first time you run it it will generate a _config.json_ file that you can cha
 
 **The program also has an option to delete the already generated project _but it will delete everything in the folder_**
 If you want to disable this feature you can do so in 'config.json' file by setting the 'delete:true' to 'delete:false'
+
+# Source
+
+If you would like to try fixing or even working the source file is there. Msg me if you would like to get the makefile for dotnet commands.
+
+**If you are planing on working on any of the lab's machines you will need to install _brew_**
+
+For instructions about brew slack marvin '!brew'
+
+(Openssl)http://brewformulas.org/Openssl
+
+(dotnet_install_script)https://dot.net/v1/dotnet-install.sh
