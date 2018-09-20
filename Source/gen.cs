@@ -11,7 +11,9 @@ namespace generator
 		{
 			string input;
 			string dir;
-			char key;
+			string key;
+			string deletion;
+
 			if (!File.Exists(@"./config.json"))
 			{
 				GenJson();
@@ -27,20 +29,22 @@ namespace generator
 			if (config.delete) /* Checks the config file for the delete option */
 			{
 				Console.Write("Would you like to Generate or Delete project? (g/d) - ");
-				key = (char)Console.Read();
-				if (key == 'g' || key == 'G')
+				key = Console.ReadLine();
+				if (key.CompareTo("g") == 0 || key.CompareTo("G") == 0)
 					Generate(dir, input, config.assets);
-				else if (key == 'd' || key == 'D')
+				else if (key.CompareTo("d") == 0 || key.CompareTo("D") == 0)
 				{
-					Console.Write("Are you sure you want to delete '{0}' project? (y/n)", dir);
-					key = (char)Console.Read();
-					if (key == 'y' || key == 'Y')
+					Console.Write("Are you sure you want to delete '{0}' project? (yes/NO) - ", dir);
+					deletion = Console.ReadLine();
+					if (deletion == "yes" || deletion == "YES")
 					{
 						DirectoryInfo dirInfo = new DirectoryInfo(dir);
 						dirInfo.Delete(true);
 					}
-					else if (key == 'n' || key == 'N')
+					else if (deletion == "NO" || deletion == "no")
 						return;
+					else
+						Console.WriteLine("That was not an option!");
 				}
 				else
 					Console.WriteLine("This is not an option!");

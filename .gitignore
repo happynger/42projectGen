@@ -2,5 +2,6 @@ Executable/assets/
 Executable/config.json
 Source/assets/
 Source/bin/
+Source/config.json
 Source/obj/
 Makefile
