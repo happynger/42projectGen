@@ -70,6 +70,8 @@ namespace generator
 			public bool AssetsOn = true;
 			public bool HeadersOn = true;
 			public bool SrcOn = true;
+			public bool SrcPregen = true;
+			public bool HeadersPregen = true;
 			public string assets = "./assets/"; /* Setting to set your own assets folder path */
 			public string output_path = "../../"; /* Setting for the output path */
 		}
@@ -141,16 +143,22 @@ namespace generator
 
 		private static void Create_aut(string dir, string input, Item config) /* Creates the Author file */
 		{
-			if (config.AuthorOn == true)
+			if (config.AuthorOn)
 				File.WriteAllText(dir + "author", Environment.GetEnvironmentVariable("USER") + "\n");
-			if (config.SrcOn == true)
-				File.Create(dir + "src/" + input + ".c");
-			else
-				File.Create(dir + "/" + input + ".c");
-			if (config.HeadersOn == true)
-				File.Create(dir + "headers/" + input + ".h");
-			else
-				File.Create(dir + "/" + input + ".h");
+			if (config.SrcPregen)
+			{
+				if (config.SrcOn)
+					File.Create(dir + "src/" + input + ".c");
+				else
+					File.Create(dir + "/" + input + ".c");
+			}
+			if (config.HeadersPregen)
+			{
+				if (config.HeadersOn)
+					File.Create(dir + "headers/" + input + ".h");
+				else
+					File.Create(dir + "/" + input + ".h");
+			}
 		}
 
 		private static void Create_Dir(string dir, Item config) /* Creates all of the subDirectories */
