@@ -31,7 +31,7 @@ namespace generator
 				Console.Write("Would you like to Generate or Delete project? (g/d) - ");
 				key = Console.ReadLine();
 				if (key.CompareTo("g") == 0 || key.CompareTo("G") == 0)
-					Generate(dir, input, config.assets);
+					Generate(dir, input, config.assets, config);
 				else if (key.CompareTo("d") == 0 || key.CompareTo("D") == 0)
 				{
 					Console.Write("Are you sure you want to delete '{0}' project? (yes/NO) - ", dir);
@@ -50,7 +50,7 @@ namespace generator
 					Console.WriteLine("This is not an option!");
 			}
 			else
-				Generate(dir, input, config.assets);
+				Generate(dir, input, config.assets, config);
         }
 
 		private static Item LoadJson() /* Loads Json file into an Item object */
@@ -66,6 +66,10 @@ namespace generator
 		private class Item /* Object I use for the Json file */
 		{
 			public bool delete = true; /* Setting to remove the delete functionality */
+			public bool AuthorOn = true;
+			public bool AssetsOn = true;
+			public bool HeadersOn = true;
+			public bool SrcOn = true;
 			public string assets = "./assets/"; /* Setting to set your own assets folder path */
 			public string output_path = "../../"; /* Setting for the output path */
 		}
@@ -82,20 +86,23 @@ namespace generator
 			}
 		}
 
-		private static void Generate(string dir, string input, string assets_dir) /* Main Heart of the program. Generates everything */
+		private static void Generate(string dir, string input, string assets_dir, Item config) /* Main Heart of the program. Generates everything */
 		{
 			if (!Directory.Exists(dir))
 				Directory.CreateDirectory(dir);
-			Create_Dir(dir);
-			Create_aut(dir, input);
-			if (!Directory.Exists(assets_dir))
-				Directory.CreateDirectory(assets_dir);
-			else
-				Move_assets(assets_dir, dir);
+			Create_Dir(dir, config);
+			Create_aut(dir, input, config);
+			if (config.AssetsOn)
+			{
+				if (!Directory.Exists(assets_dir))
+					Directory.CreateDirectory(assets_dir);
+				else 
+					Move_assets(assets_dir, dir, config);
+			}
 			Console.WriteLine("The project was generated");
 		}
 
-		private static void Move_assets(string dir, string path) /* Copies and moves all the files in the ./assets to their appropriate folders. @path is the end path, @dir is directory to internal assets */
+		private static void Move_assets(string dir, string path, Item config) /* Copies and moves all the files in the ./assets to their appropriate folders. @path is the end path, @dir is directory to internal assets */
 		{
 			string src;
 			string end;
@@ -106,29 +113,54 @@ namespace generator
 			foreach (FileInfo fi in fileNames)
 			{
 				if (fi.Name.Contains(".c"))
-					endDir = "src/";
+				{
+					if (config.SrcOn)
+						endDir = "src/";
+					else
+						endDir = "/";
+				}
 				else if (fi.Name.Contains(".h"))
-					endDir = "headers/";
+				{
+					if (config.HeadersOn)
+						endDir = "headers/";
+					else
+						endDir = "/";
+				}
 				else
-					endDir = "assets/";
+				{
+					if (config.AssetsOn)
+						endDir = "assets/";
+					else
+						endDir = "/";
+				}
 				src = Path.Combine(dir, fi.Name);
 				end = Path.Combine(path + endDir, fi.Name);
 				File.Copy(src, end);
 			}
 		}
 
-		private static void Create_aut(string dir, string input) /* Creates the Author file */
+		private static void Create_aut(string dir, string input, Item config) /* Creates the Author file */
 		{
-			File.WriteAllText(dir + "author", Environment.GetEnvironmentVariable("USER") + "\n");
-			File.Create(dir + "src/" + input + ".c");
-			File.Create(dir + "headers/" + input + ".h");
+			if (config.AuthorOn == true)
+				File.WriteAllText(dir + "author", Environment.GetEnvironmentVariable("USER") + "\n");
+			if (config.SrcOn == true)
+				File.Create(dir + "src/" + input + ".c");
+			else
+				File.Create(dir + "/" + input + ".c");
+			if (config.HeadersOn == true)
+				File.Create(dir + "headers/" + input + ".h");
+			else
+				File.Create(dir + "/" + input + ".h");
 		}
 
-		private static void Create_Dir(string dir) /* Creates all of the subDirectories */
+		private static void Create_Dir(string dir, Item config) /* Creates all of the subDirectories */
 		{
-			Directory.CreateDirectory(dir + "assets");
-			Directory.CreateDirectory(dir + "headers");
-			Directory.CreateDirectory(dir + "src");
+			if (config.AssetsOn == true)
+				Directory.CreateDirectory(dir + "assets");
+			if (config.HeadersOn == true)
+				Directory.CreateDirectory(dir + "headers");
+			if (config.SrcOn == true)
+				Directory.CreateDirectory(dir + "src");
 		}
     }
 }
