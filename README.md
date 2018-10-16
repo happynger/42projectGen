@@ -48,6 +48,25 @@ The first time you run it it will generate a `config.json` file that you can cha
 **The program also has an option to delete the already generated project _but it will delete everything in the folder_**
 If you want to disable this feature you can do so in `config.json` file by setting the `delete:true` to `delete:false`
 
+## Config
+
+### `"RuleName": default_value'
+
+```json
+'"delete": true' allowes the deletion of the project.
+'"AuthorOn": true' allowes the creation of the author file.
+'"AssetsOn": true' allowes the creation of the assets directory and sorting files into it.
+'"HeadersOn": true' allowes the creation of the header directory.
+'"UseTemplateHeader": true' allowes creation of the header file using the `template.h` file. Works only when
+`HeadersPregen` is true
+
+'"SrcOn": true' allowes the creation of source directory.
+'"SrcPregen": true' allowes the creation the source file.
+'"HeadersPregen": true' allowes the creation the headers file.
+'"assets": "./assets/"' Path to assets folder. Useful only if `"AssetsOn"` is true
+'"output_path": "../../"' Path for the new project directory.
+```
+
 ## Source
 
 If you would like to try fixing or even working the source file is there.
