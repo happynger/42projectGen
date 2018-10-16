@@ -6,7 +6,7 @@
 #    By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/17 22:20:55 by otahirov          #+#    #+#              #
-#    Updated: 2018/10/09 16:20:55 by otahirov         ###   ########.fr        #
+#    Updated: 2018/10/16 15:01:36 by otahirov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,13 +15,14 @@ PATH_EX_FULL = ../Executable
 PATH_RELEASE_FULL = ./Source/bin/Release/netcoreapp2.1/osx.10.13-x64
 PATH_RELEASE = ./Source/bin/Release
 PATH_ASSETS = ./Source/assets
-PATH_PROJECT = ./Source/
+PATH_PROJECT = ./Source
 
 all : publish
 
 publish : clean
-	@dotnet publish $(PATH_PROJECT) -c Release -f netcoreapp2.1 -r osx.10.13-x64 -o $(PATH_EX_FULL)/
+	@dotnet publish $(PATH_PROJECT)/ -c Release -f netcoreapp2.1 -r osx.10.13-x64 -o $(PATH_EX_FULL)/
 	@mkdir $(PATH_EX)/assets
+	@cp $(PATH_PROJECT)/template.h $(PATH_EX)/
 	@echo "Compiled!"
 
 copy : clean

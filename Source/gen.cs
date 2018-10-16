@@ -69,6 +69,7 @@ namespace generator
 			public bool AuthorOn = true;
 			public bool AssetsOn = true;
 			public bool HeadersOn = true;
+			public bool UseTemplateHeader = true;
 			public bool SrcOn = true;
 			public bool SrcPregen = true;
 			public bool HeadersPregen = true;
@@ -141,6 +142,23 @@ namespace generator
 			}
 		}
 
+		private static void Template(string Filename, string dir)
+		{
+			StreamReader reader = new StreamReader("./template.h");
+			string template = reader.ReadToEnd();
+			string defence = Filename.ToUpper();
+			defence = defence.Replace('.', '_');
+
+			using (StreamWriter writer = new StreamWriter(dir + Filename, false))
+			{
+				{
+					string output = template.Replace("MACRO", defence);
+					writer.Write(output);
+				}
+				writer.Close();
+			}
+		}
+
 		private static void Create_aut(string dir, string input, Item config) /* Creates the Author file */
 		{
 			if (config.AuthorOn)
@@ -155,9 +173,19 @@ namespace generator
 			if (config.HeadersPregen)
 			{
 				if (config.HeadersOn)
-					File.Create(dir + "headers/" + input + ".h");
+				{
+					if (config.UseTemplateHeader)
+						Template(input + ".h", Path.Combine(dir, "headers/"));
+					else
+						File.Create(dir + "headers/" + input + ".h");
+				}
 				else
-					File.Create(dir + "/" + input + ".h");
+				{
+					if (config.UseTemplateHeader)
+						Template(input + ".h", Path.Combine(dir, "/"));
+					else
+						File.Create(dir + "/" + input + ".h");
+				}
 			}
 		}
 
